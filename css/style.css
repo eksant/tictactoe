@@ -1,24 +1,27 @@
-/*******tic-tac-toe******/
+/*
+ * Tic Tac Toe
+ * A Tic Tac Toe game in HTML/JavaScript/CSS.
+ * Maked With ❤
+ * @author: Eksa <eksant@gmail.com>
+ */
+
+table {
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+td {
+  background-color: black;
+  border: 3px solid white;
+  font-size: 40px;
+  color: #ccc;
+  border-radius: 10px 10px 10px 10px;
+}
 
 #tic-tac-toe .disable {
   text-transform: uppercase;
   font-size: 30px;
   font-family: Georgia, "Times New Roman", Times, serif;
-}
-#tic-tac-toe #game li {
-  float: left;
-  padding: 0;
-  list-style: none;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #fff;
-  height: 60px;
-  line-height: 60px;
-  font-size: 40px;
-  color: #ccc;
-}
-#tic-tac-toe #game li.disable {
-  color: #fff;
 }
 #tic-tac-toe #game {
   float: left;
@@ -77,4 +80,8 @@
 .input-append .win_text {
   width: 52px;
 }
-/*******tic-tac-toe END******/
+.small-text {
+  font-size: 10px;
+  text-align: center;
+  padding-left: 20px;
+}
