@@ -122,7 +122,7 @@ function set() {
     playerWin[turn] += 1;
     document.getElementById(turn === "O" ? "o_win" : "x_win").textContent =
       playerWin[turn];
-    alert("Winner: Player " + turn + " - " + playerWin[turn]);
+    alert("Winner: Player " + turn);
     startNewGame();
   } else if (moves === N_SIZE * N_SIZE) {
     alert("Draw");
@@ -139,6 +139,7 @@ function set() {
     eksa[2].style.backgroundColor = "#5bb75b";
     notEksa[0].style.backgroundColor = "#eeeeee";
     notEksa[2].style.backgroundColor = "#eeeeee";
+    turn = turn === "X" ? "O" : "X";
   }
 }
 
