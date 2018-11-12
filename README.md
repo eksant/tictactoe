@@ -1,6 +1,7 @@
 # Tic Tac Toe
 
-A simple game build with html-javascript-css
+A Tic Tac Toe game in HTML/JavaScript/CSS.  
+Maked With ❤
 
 ### Branch
 
