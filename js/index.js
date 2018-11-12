@@ -1,167 +1,145 @@
-// JavaScript Document
-$(document).ready(function() {
-  var x = "x";
-  var o = "o";
-  var count = 0;
-  var o_win = 0;
-  var x_win = 0;
-  $("#game li").click(function() {
-    if (
-      ($("#one").hasClass("o") &&
-        $("#two").hasClass("o") &&
-        $("#three").hasClass("o")) ||
-      ($("#four").hasClass("o") &&
-        $("#five").hasClass("o") &&
-        $("#six").hasClass("o")) ||
-      ($("#seven").hasClass("o") &&
-        $("#eight").hasClass("o") &&
-        $("#nine").hasClass("o")) ||
-      ($("#one").hasClass("o") &&
-        $("#four").hasClass("o") &&
-        $("#seven").hasClass("o")) ||
-      ($("#two").hasClass("o") &&
-        $("#five").hasClass("o") &&
-        $("#eight").hasClass("o")) ||
-      ($("#three").hasClass("o") &&
-        $("#six").hasClass("o") &&
-        $("#nine").hasClass("o")) ||
-      ($("#one").hasClass("o") &&
-        $("#five").hasClass("o") &&
-        $("#nine").hasClass("o")) ||
-      ($("#three").hasClass("o") &&
-        $("#five").hasClass("o") &&
-        $("#seven").hasClass("o"))
-    ) {
-      alert("O has won the game. Start a new game");
-      $("#game li").text("+");
-      $("#game li").removeClass("disable");
-      $("#game li").removeClass("o");
-      $("#game li").removeClass("x");
-      $("#game li").removeClass("btn-primary");
-      $("#game li").removeClass("btn-info");
-    } else if (
-      ($("#one").hasClass("x") &&
-        $("#two").hasClass("x") &&
-        $("#three").hasClass("x")) ||
-      ($("#four").hasClass("x") &&
-        $("#five").hasClass("x") &&
-        $("#six").hasClass("x")) ||
-      ($("#seven").hasClass("x") &&
-        $("#eight").hasClass("x") &&
-        $("#nine").hasClass("x")) ||
-      ($("#one").hasClass("x") &&
-        $("#four").hasClass("x") &&
-        $("#seven").hasClass("x")) ||
-      ($("#two").hasClass("x") &&
-        $("#five").hasClass("x") &&
-        $("#eight").hasClass("x")) ||
-      ($("#three").hasClass("x") &&
-        $("#six").hasClass("x") &&
-        $("#nine").hasClass("x")) ||
-      ($("#one").hasClass("x") &&
-        $("#five").hasClass("x") &&
-        $("#nine").hasClass("x")) ||
-      ($("#three").hasClass("x") &&
-        $("#five").hasClass("x") &&
-        $("#seven").hasClass("x"))
-    ) {
-      alert("X wins has won the game. Start a new game");
-      $("#game li").text("+");
-      $("#game li").removeClass("disable");
-      $("#game li").removeClass("o");
-      $("#game li").removeClass("x");
-      $("#game li").removeClass("btn-primary");
-      $("#game li").removeClass("btn-info");
-    } else if (count == 9) {
-      alert("Its a tie. It will restart.");
-      $("#game li").text("+");
-      $("#game li").removeClass("disable");
-      $("#game li").removeClass("o");
-      $("#game li").removeClass("x");
-      $("#game li").removeClass("btn-primary");
-      $("#game li").removeClass("btn-info");
-      count = 0;
-    } else if ($(this).hasClass("disable")) {
-      alert("Already selected");
-    } else if (count % 2 == 0) {
-      count++;
-      $(this).text(o);
-      $(this).addClass("disable o btn-primary");
-      if (
-        ($("#one").hasClass("o") &&
-          $("#two").hasClass("o") &&
-          $("#three").hasClass("o")) ||
-        ($("#four").hasClass("o") &&
-          $("#five").hasClass("o") &&
-          $("#six").hasClass("o")) ||
-        ($("#seven").hasClass("o") &&
-          $("#eight").hasClass("o") &&
-          $("#nine").hasClass("o")) ||
-        ($("#one").hasClass("o") &&
-          $("#four").hasClass("o") &&
-          $("#seven").hasClass("o")) ||
-        ($("#two").hasClass("o") &&
-          $("#five").hasClass("o") &&
-          $("#eight").hasClass("o")) ||
-        ($("#three").hasClass("o") &&
-          $("#six").hasClass("o") &&
-          $("#nine").hasClass("o")) ||
-        ($("#one").hasClass("o") &&
-          $("#five").hasClass("o") &&
-          $("#nine").hasClass("o")) ||
-        ($("#three").hasClass("o") &&
-          $("#five").hasClass("o") &&
-          $("#seven").hasClass("o"))
-      ) {
-        alert("O wins");
-        count = 0;
-        o_win++;
-        $("#o_win").text(o_win);
+/*
+ * Tic Tac Toe
+ * A Tic Tac Toe game in HTML/JavaScript/CSS.
+ * Maked With ❤
+ * @author: Eksa <eksant@gmail.com>
+ */
+
+var N_SIZE = 3,
+  EMPTY = "&nbsp;",
+  boxes = [],
+  turn = "X",
+  score,
+  moves,
+  playerWin = {
+    X: 0,
+    O: 0
+  };
+
+/*
+ * Initializes the Tic Tac Toe board and starts the game.
+ */
+function init() {
+  var board = document.createElement("table");
+  board.setAttribute("border", 1);
+  board.setAttribute("cellspacing", 0);
+
+  var identifier = 1;
+  for (var i = 0; i < N_SIZE; i++) {
+    var row = document.createElement("tr");
+    board.appendChild(row);
+    for (var j = 0; j < N_SIZE; j++) {
+      var cell = document.createElement("td");
+      cell.setAttribute("height", 60);
+      cell.setAttribute("width", 60);
+      cell.setAttribute("align", "center");
+      cell.setAttribute("valign", "center");
+      cell.classList.add("col" + j, "row" + i);
+      if (i == j) {
+        cell.classList.add("diagonal0");
       }
-    } else {
-      count++;
-      $(this).text(x);
-      $(this).addClass("disable x btn-info");
-      if (
-        ($("#one").hasClass("x") &&
-          $("#two").hasClass("x") &&
-          $("#three").hasClass("x")) ||
-        ($("#four").hasClass("x") &&
-          $("#five").hasClass("x") &&
-          $("#six").hasClass("x")) ||
-        ($("#seven").hasClass("x") &&
-          $("#eight").hasClass("x") &&
-          $("#nine").hasClass("x")) ||
-        ($("#one").hasClass("x") &&
-          $("#four").hasClass("x") &&
-          $("#seven").hasClass("x")) ||
-        ($("#two").hasClass("x") &&
-          $("#five").hasClass("x") &&
-          $("#eight").hasClass("x")) ||
-        ($("#three").hasClass("x") &&
-          $("#six").hasClass("x") &&
-          $("#nine").hasClass("x")) ||
-        ($("#one").hasClass("x") &&
-          $("#five").hasClass("x") &&
-          $("#nine").hasClass("x")) ||
-        ($("#three").hasClass("x") &&
-          $("#five").hasClass("x") &&
-          $("#seven").hasClass("x"))
-      ) {
-        alert("X wins");
-        count = 0;
-        x_win++;
-        $("#x_win").text(x_win);
+      if (j == N_SIZE - i - 1) {
+        cell.classList.add("diagonal1");
       }
+      cell.identifier = identifier;
+      cell.addEventListener("click", set);
+      row.appendChild(cell);
+      boxes.push(cell);
+      // console.log(boxes);
+      identifier += identifier;
     }
+  }
+
+  document.getElementById("tictactoe").appendChild(board);
+  startNewGame();
+}
+
+/*
+ * New game
+ */
+function startNewGame() {
+  score = {
+    X: 0,
+    O: 0
+  };
+  moves = 0;
+  turn = "X";
+  document.getElementById("o_win").textContent = playerWin.O;
+  document.getElementById("x_win").textContent = playerWin.X;
+  boxes.forEach(function(square) {
+    square.innerHTML = EMPTY;
   });
-  $("#reset").click(function() {
-    $("#game li").text("+");
-    $("#game li").removeClass("disable");
-    $("#game li").removeClass("o");
-    $("#game li").removeClass("x");
-    $("#game li").removeClass("btn-primary");
-    $("#game li").removeClass("btn-info");
-    count = 0;
+}
+
+/*
+ * Restart
+ */
+function restartGame() {
+  playerWin = {
+    X: 0,
+    O: 0
+  };
+  document.getElementById("o_win").textContent = playerWin.O;
+  document.getElementById("x_win").textContent = playerWin.X;
+  startNewGame();
+}
+
+/*
+ * Check if a win or not
+ */
+function win(clicked) {
+  // Get all cell classes
+  var memberOf = clicked.className.split(/\s+/);
+  for (var i = 0; i < memberOf.length; i++) {
+    var testClass = "." + memberOf[i];
+    var items = contains("#tictactoe " + testClass, turn);
+    // console.log(items.length + "==" + N_SIZE);
+    if (items.length == N_SIZE) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function contains(selector, text) {
+  var elements = document.querySelectorAll(selector);
+  return [].filter.call(elements, function(element) {
+    return RegExp(text).test(element.textContent);
   });
-});
+}
+
+/*
+ * Sets clicked square and also updates the turn.
+ */
+function set() {
+  if (this.innerHTML !== EMPTY) {
+    return;
+  }
+  this.innerHTML = turn;
+  moves += 1;
+  score[turn] += this.identifier;
+  if (win(this)) {
+    playerWin[turn] += 1;
+    document.getElementById(turn === "O" ? "o_win" : "x_win").textContent =
+      playerWin[turn];
+    alert("Winner: Player " + turn + " - " + playerWin[turn]);
+    startNewGame();
+  } else if (moves === N_SIZE * N_SIZE) {
+    alert("Draw");
+    startNewGame();
+  } else {
+    var eksa = document
+      .getElementById(turn === "O" ? "x_player" : "o_player")
+      .querySelectorAll(".add-on");
+    var notEksa = document
+      .getElementById(turn === "X" ? "x_player" : "o_player")
+      .querySelectorAll(".add-on");
+
+    eksa[0].style.backgroundColor = "#5bb75b";
+    eksa[2].style.backgroundColor = "#5bb75b";
+    notEksa[0].style.backgroundColor = "#eeeeee";
+    notEksa[2].style.backgroundColor = "#eeeeee";
+  }
+}
+
+init();

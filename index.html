@@ -8,7 +8,6 @@
       rel="stylesheet prefetch"
       href="https://getbootstrap.com/2.3.2/assets/css/bootstrap.css"
     />
-
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
@@ -18,37 +17,39 @@
         <div class="row">
           <h1 class="span3">Tic Tac Toe</h1>
           <div class="span3">
-            <div class="input-prepend input-append">
+            <div id="o_player" class="input-prepend input-append">
               <span class="add-on win_text">O won</span>
-              <strong id="o_win" class="win_times add-on">0</strong>
+              <span id="o_win" class="win_times add-on">0</span>
               <span class="add-on">time(s)</span>
             </div>
-            <div class="input-prepend input-append">
+            <div id="x_player" class="input-prepend input-append">
               <span class="add-on win_text">X won</span>
-              <strong id="x_win" class="win_times add-on">0</strong>
+              <span id="x_win" class="win_times add-on">0</span>
               <span class="add-on">time(s)</span>
             </div>
           </div>
         </div>
-        <ul class="row" id="game">
-          <li id="one" class="btn span1">+</li>
-          <li id="two" class="btn span1">+</li>
-          <li id="three" class="btn span1">+</li>
-          <li id="four" class="btn span1">+</li>
-          <li id="five" class="btn span1">+</li>
-          <li id="six" class="btn span1">+</li>
-          <li id="seven" class="btn span1">+</li>
-          <li id="eight" class="btn span1">+</li>
-          <li id="nine" class="btn span1">+</li>
-        </ul>
+
+        <div id="tictactoe" align="center"></div>
+
         <div class="clr">&nbsp;</div>
         <div class="row">
-          <a href="#" id="reset" class="btn-success btn span3">Restart</a>
+          <a
+            href="#"
+            id="reset"
+            onclick="restartGame();return false;"
+            class="btn-success btn span3"
+            >Restart</a
+          >
+        </div>
+        <div class="row small-text">
+          Maked with &#10084;<br />
+          <a href="https://github.com/eksant/tictactoe" target="_blank">
+            Github: https://github.com/eksant/tictactoe
+          </a>
         </div>
       </div>
     </div>
-    <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
-
     <script src="js/index.js"></script>
   </body>
 </html>
